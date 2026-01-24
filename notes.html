@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes | Min Wu</title>
+    <meta name="description" content="Technical notes and articles by Min Wu">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/notes.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-wrapper">
+        <div class="container">
+            <a href="index.html" class="brand-logo"><i class="fas fa-arrow-left"></i> Back</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="notes.html" class="active">Notes</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="resume.pdf" target="_blank" class="btn-resume">Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="notes.html" class="active">Notes</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="resume.pdf" target="_blank">Resume</a></li>
+    </ul>
+
+    <!-- Notes Section -->
+    <section id="notes-section" class="section">
+        <div class="container">
+            <h2 class="section-title"><span class="number"></span> Notes</h2>
+
+            <div id="notes-list" class="notes-grid">
+                <a href="notes/NLP.md" class="note-card" target="_blank">
+                    <h3>A Brief History of Large Language Models</h3>
+                    <p>NLP to LLM to future SLM</p>
+                    <span class="note-tag">NLP</span>
+                </a>
+                <a href="notes/CV.md" class="note-card" target="_blank">
+                    <h3>A Brief Introduction to Computer Vision</h3>
+                    <p>What is CV? How CV benefits robotics and manufacuturing?</p>
+                    <span class="note-tag">CV</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            M.Sidenav.init(document.querySelectorAll('.sidenav'));
+        });
+    </script>
+</body>
+</html>
