@@ -73,20 +73,18 @@ nav.nav-wrapper {
 
 nav .container {
     position: relative;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     height: 100%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-nav ul.right {
-    padding-left: 160px; /* reserve space for brand-logo */
-}
 
 
 nav ul.right {
+    justify-self: center;
     display: flex;
     gap: 8px;
     align-items: center;
@@ -479,7 +477,9 @@ nav .sidenav-trigger {
 .projects-grid {
     display: flex;
     gap: 20px;
+    /* overflow-x: hidden; */
     overflow-x: hidden;
+    overflow-y: visible;
     scroll-behavior: smooth;
     padding: 10px 0;
 }

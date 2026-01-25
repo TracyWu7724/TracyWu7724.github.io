@@ -129,15 +129,6 @@ function initNavbar() {
             nav.style.boxShadow = '0 1px 3px rgba(0,0,0,0.12)';
         }
 
-        // Hide/show navbar on scroll (optional - uncomment to enable)
-        /*
-        if (scrollY > lastScrollY && scrollY > 100) {
-            nav.style.transform = 'translateY(-100%)';
-        } else {
-            nav.style.transform = 'translateY(0)';
-        }
-        */
-
         lastScrollY = scrollY;
         ticking = false;
     }
@@ -172,15 +163,35 @@ function initNavbar() {
     });
 }
 
-/* Project Card Hover Effects */
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px)';
+document.addEventListener('DOMContentLoaded', () => {
+
+    /* Project Card Hover Effects */
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-8px)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
     });
 
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-    });
+    /* Project Scroll Buttons */
+    const grid = document.querySelector('.projects-grid');
+    const btnLeft = document.querySelector('.scroll-left');
+    const btnRight = document.querySelector('.scroll-right');
+
+    if (grid && btnLeft && btnRight) {
+        const scrollAmount = () => grid.clientWidth * 0.9;
+
+        btnRight.addEventListener('click', () => {
+            grid.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+        });
+
+        btnLeft.addEventListener('click', () => {
+            grid.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+        });
+    }
 });
 
 /* Add loading animation */
@@ -188,7 +199,3 @@ window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
-/* Console Easter Egg */
-console.log('%c Hi there! 👋', 'font-size: 24px; font-weight: bold; color: #00274C;');
-console.log('%c Thanks for checking out my portfolio!', 'font-size: 14px; color: #FFCB05;');
-console.log('%c Feel free to connect with me on LinkedIn or GitHub.', 'font-size: 12px; color: #4a5568;');
