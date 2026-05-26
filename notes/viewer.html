@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note | Min Wu</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        #note-viewer {
+            padding-top: 120px;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        .note-content {
+            max-width: 760px;
+        }
+
+        .note-content h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .note-content h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 40px 0 16px;
+        }
+
+        .note-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 28px 0 12px;
+        }
+
+        .note-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .note-content ul,
+        .note-content ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .note-content li {
+            margin-bottom: 6px;
+        }
+
+        .note-content code {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 0.88em;
+            font-family: 'Courier New', monospace;
+        }
+
+        .note-content pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .note-content pre code {
+            background: none;
+            padding: 0;
+            font-size: 0.9em;
+            color: var(--text-primary);
+        }
+
+        .note-content blockquote {
+            border-left: 3px solid var(--secondary-color);
+            padding: 12px 20px;
+            margin: 20px 0;
+            background: var(--bg-secondary);
+            border-radius: 0 8px 8px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .note-content hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 32px 0;
+        }
+
+        .note-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .note-content a {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        #loading {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        #error-msg {
+            display: none;
+            color: #e53e3e;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-wrapper">
+        <div class="container">
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../notes.html">Blogs</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#hobbies">Hobbies</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../notes.html">Blogs</a></li>
+        <li><a href="../index.html#hobbies">Hobbies</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+
+    <section id="note-viewer">
+        <div class="container">
+            <a href="../notes.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Notes
+            </a>
+            <div id="loading">Loading...</div>
+            <div id="error-msg">Could not load note.</div>
+            <div id="note-body" class="note-content"></div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            M.Sidenav.init(document.querySelectorAll('.sidenav'));
+
+            const params = new URLSearchParams(window.location.search);
+            const note = params.get('note');
+
+            if (!note) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error-msg').style.display = 'block';
+                return;
+            }
+
+            fetch(note + '.md')
+                .then(function (res) {
+                    if (!res.ok) throw new Error('Not found');
+                    return res.text();
+                })
+                .then(function (text) {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('note-body').innerHTML = marked.parse(text);
+
+                    const h1 = document.querySelector('#note-body h1');
+                    if (h1) document.title = h1.textContent + ' | Min Wu';
+                })
+                .catch(function () {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('error-msg').style.display = 'block';
+                });
+        });
+    </script>
+</body>
+</html>

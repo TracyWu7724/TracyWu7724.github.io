@@ -27,13 +27,10 @@
             <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="notes.html">Blogs</a></li> 
                 <li><a href="#skills">Skills</a></li>
-                <!-- <li><a href="notes.html">Notes</a></li>  -->
                 <li><a href="#hobbies">Hobbies</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="resume.pdf" target="_blank" class="btn-resume">Resume</a></li>
             </ul>
         </div>
     </nav>
@@ -41,13 +38,11 @@
     <!-- Mobile Navigation -->
     <ul class="sidenav" id="mobile-nav">
         <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
+
         <li><a href="#skills">Skills</a></li>
-        <!-- <li><a href="notes.html">Notes</a></li> -->
+        <li><a href="notes.html">Blogs</a></li>
         <li><a href="#hobbies">Hobbies</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="resume.pdf" target="_blank">Resume</a></li>
     </ul>
 
     <!-- Hero Section -->
@@ -113,166 +108,6 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title"><span class="number"></span> Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Skyworks Solutions, Inc.</h3>
-                        <p class="timeline-role">Machine Learning Engineer, Internship</p>
-                        <p class="timeline-date">May 2025 - Aug 2025</p>
-                        <ul> 
-                            <li>· Built a text-to-SQL system enabling natural-language query translation and execution across multiple enterprise databases; tracked prompt iterations and evaluation results with MLflow and deployed the service within Databricks</li>
-                            <li>· Developed an end-to-end web application with a FastAPI backend and React frontend to support company-wide text-to-SQL queries, implementing schema grounding, SQL validation, and secure query execution across multiple databases</li>
-                            <li>· Designed automated data cleaning and ETL pipelines using Python and Apache Airflow; migrated datasets to Databricks Unity Catalog and re-architected workflows to improve scalability, access control, and data governance</li>
-                            
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Henkel AG& Co. KGaA</h3>
-                        <p class="timeline-role">Data Scientist, Internship</p>
-                        <p class="timeline-date">Apr 2024 - Aug 2024</p>
-                        <ul> 
-                            <li>· Built a scalable account recommendation system over billions of sales records, implementing embedding-based similarity search, engineered efficient candidate filtering with vector indexing and batch processing to achieve low-latency top-K account retrieval</li>
-                            <li>· Created sales analytics dahsboards using Power BI, facilitated business activities tracking across East Europe and Middle East regions</li>
-                            
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Estee Lauder Inc.</h3>
-                        <p class="timeline-role">Data Scientist, Internship</p>
-                        <p class="timeline-date">Jul 2023 - Jan 2024</p>
-                        <ul> 
-                            <li>· Built end-to-end SQL ETL workflows integrating financial estimation and supply-chain planning systems, supporting real-time inventory monitoring and anomaly alerts</li>
-                            <li>· Developed data-driven forecasting dashboards with automated refresh, validation checks, and email notification workflows for forecast deviation tracking</li>
-                            
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title"><span class="number"></span> Projects</h2>
-            <div class="projects-wrapper">
-                <button class="scroll-btn scroll-left"><i class="fas fa-chevron-left"></i></button>
-                <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="image/projects/SLM.png" alt="SLM">
-                    </div>
-                    <div class="project-top">
-                        <div class="project-links">
-                            <a href="https://github.com/TracyWu7724/SLM_JobSearch"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">Small LM Job Search Tool</h3>
-                    <p class="project-description">
-                        Develop, train, fine-tune GPT2 for job search automation, featuring cover letter generation, resume tailoring, and skill extraction.
-                    </p>
-                    <div class="project-tech">
-                        <span>Data curation</span>
-                        <span>Architecture optimization</span>
-                        <span>Small Language Model</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="image/projects/Full Stack Text-to-SQL.png" alt="Text-to-SQL">
-                    </div>
-                    <div class="project-top">
-                        <div class="project-links">
-                            <a href="https://github.com/TracyWu7724/LLM_Web_App"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">Text-to-SQL App</h3>
-                    <p class="project-description">
-                        A full-stack application that turns user text into database queries to allow non-technical users to access and analyze needed data ASAP.
-                    </p>
-                    <div class="project-tech">
-                        <span>FastAPI</span>
-                        <span>Databases</span>
-                        <span>ReactJS</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="image/projects/RAG.png" alt="Text-to-SQL">
-                    </div>
-                    <div class="project-top">
-                        <div class="project-links">
-                            <a href="https://github.com/TracyWu7724/Scalable_LLM" target="_blank"><i class="fab fa-github"></i></a>
-                            <a href="https://youtu.be/Pr-2e8iJCXw" target="_blank"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title"> Adhesive Products Q&A Chatbot</h3>
-                    <p class="project-description">
-                        A Retrieval-Augmented Generation (RAG) project designed for accurate, real-world product manual information retrieval.
-                    </p>
-                    <div class="project-tech">
-                        <span>OCR</span>
-                        <span>RAG</span>
-                        <span>Docker</span>
-                        <span>AWS</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="image/projects/Bayes.png" alt="Bayesian-Hierarchical-Factor">
-                    </div>
-                    <div class="project-top">
-                        <div class="project-links">
-                            <a href="https://github.com/TracyWu7724/Bayesian-Hierarchical-Factor" target="_blank"><i class="fab fa-github"></i></a>
-                            <a href="https://youtu.be/qs0ODimv1RY" target="_blank"><i class="fab fa-youtube"></i></a>
-
-                        </div>
-                    </div>
-                    <h3 class="project-title">Bayesian Statistics & Factor Investing </h3>
-                    <p class="project-description">
-                        A Bayesian Statistics project leveraging posterior predictive modeling to improve return estimation under uncertainty.
-                    </p>
-                    <div class="project-tech">
-                        <span>R</span>
-                        <span>STAN</span>
-                    </div>
-                </div>
-                
-                <!-- <div class="project-card">
-                    <div class="project-image">
-                        <img src="image/projects/Bayes.png" alt="Bayesian-Hierarchical-Factor">
-                    </div>
-                    <div class="project-top">
-                        <div class="project-links">
-                            <a href="https://github.com/TracyWu7724/Bayesian-Hierarchical-Factor" target="_blank"><i class="fab fa-github"></i></a>
-
-                        </div>
-                    </div>
-                    <h3 class="project-title">Computer Vision Projects</h3>
-                    <p class="project-description">
-                        A Computer Vision project leveraging posterior predictive modeling to improve return estimation under uncertainty.
-                    </p>
-                    <div class="project-tech">
-                        <span>R</span>
-                        <span>STAN</span>
-                    </div>
-                </div> -->
 
                 </div>
                 <button class="scroll-btn scroll-right"><i class="fas fa-chevron-right"></i></button>
@@ -288,18 +123,16 @@
                 <div class="skill-category">
                     <h3><i class="fas fa-code"></i> Languages</h3>
                     <div class="skill-tags">
-                        <span>C++</span>
                         <span>Python</span>
-                        <span>R</span>
+                        <span>C++</span>
                         <span>SQL</span>
-                        <span>HTML</span>
                         <span>TypeScript</span>
                     </div>
                 </div>
                 <div class="skill-category">
                     <h3><i class="fas fa-tools"></i> Technologies</h3>
                     <div class="skill-tags">
-                        <span>Git</span>
+                        <span>PyTorch</span>
                         <span>Docker</span>
                         <span>Kubernetes</span>
                         <span>ReactJS</span>
@@ -367,15 +200,6 @@
                     </div>
                 </div>
 
-                <div class="hobby-card">
-                    <div class="hobby-image">
-                        <img src="image/hobbies/badminton.JPG" alt="Badminton">
-                    </div>
-                    <div class="hobby-overlay">
-                        <h3>Badminton</h3>
-                        <p>Fast-paced racket sport</p>
-                    </div>
-                </div>
 
                 <div class="hobby-card">
                     <div class="hobby-image">

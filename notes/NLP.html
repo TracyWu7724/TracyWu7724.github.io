@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Brief History of LLMs | Min Wu</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        #note-viewer {
+            padding-top: 120px;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        .note-content {
+            max-width: 760px;
+        }
+
+        .note-content h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            line-height: 1.3;
+        }
+
+        .note-content h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 40px 0 16px;
+        }
+
+        .note-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 28px 0 12px;
+        }
+
+        .note-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: 20px 0 10px;
+        }
+
+        .note-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .note-content ul,
+        .note-content ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            list-style: disc;
+        }
+
+        .note-content ol {
+            list-style: decimal;
+        }
+
+        .note-content li {
+            margin-bottom: 6px;
+        }
+
+        .note-content code {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 0.88em;
+            font-family: 'Courier New', monospace;
+        }
+
+        .note-content pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .note-content pre code {
+            background: none;
+            padding: 0;
+            font-size: 0.9em;
+            color: var(--text-primary);
+        }
+
+        .note-content blockquote {
+            border-left: 3px solid var(--secondary-color);
+            padding: 12px 20px;
+            margin: 20px 0;
+            background: var(--bg-secondary);
+            border-radius: 0 8px 8px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .note-content blockquote p {
+            margin-bottom: 0;
+        }
+
+        .note-content hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 32px 0;
+        }
+
+        .note-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .note-content em {
+            font-style: italic;
+        }
+
+        .note-content .math-block {
+            overflow-x: auto;
+            padding: 12px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-wrapper">
+        <div class="container">
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../notes.html">Blogs</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#hobbies">Hobbies</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../notes.html">Blogs</a></li>
+        <li><a href="../index.html#hobbies">Hobbies</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+
+    <section id="note-viewer">
+        <div class="container">
+            <a href="../notes.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Blogs
+            </a>
+            <div class="note-content">
+                <h1>A Brief History of Large Language Models (LLMs)</h1>
+
+                <blockquote>
+                    <p><strong>Note:</strong> The evolution of Large Language Models is driven not only by neural architectures, but also by <strong>compute scaling</strong>, <strong>data availability</strong>, <strong>training strategies</strong>, and <strong>alignment methods</strong>.</p>
+                </blockquote>
+
+                <hr>
+
+                <h2>1. Early Foundations: Statistical NLP</h2>
+                <h3>Text Classification &amp; Logistic Regression</h3>
+                <p>Early NLP systems relied on statistical methods and linear models:</p>
+                <ul>
+                    <li>Bag-of-Words (BoW)</li>
+                    <li>TF-IDF</li>
+                    <li>Logistic regression</li>
+                    <li>Naive Bayes</li>
+                </ul>
+                <p>These approaches ignored word order and deep semantics, limiting contextual understanding.</p>
+
+                <hr>
+
+                <h2>2. Neural Networks Enter NLP</h2>
+                <h3>Feedforward Neural Networks</h3>
+                <p>Neural networks enabled nonlinear feature learning, but:</p>
+                <ul>
+                    <li>Used sparse word representations</li>
+                    <li>Lacked shared semantic structure</li>
+                </ul>
+                <p>This constrained generalization.</p>
+
+                <hr>
+
+                <h2>3. Distributed Word Representations</h2>
+                <h3>Word Vectors &amp; Vector Semantics</h3>
+                <p>Dense embeddings introduced semantic structure:</p>
+                <ul>
+                    <li>Word2Vec</li>
+                    <li>GloVe</li>
+                    <li>FastText</li>
+                </ul>
+                <p>Semantic relationships emerged geometrically (e.g., <em>king &minus; man + woman &approx; queen</em>).</p>
+
+                <hr>
+
+                <h2>4. Language Modeling as a Core Objective</h2>
+                <h3>Probabilistic Language Models</h3>
+                <p>Language modeling estimates:</p>
+                <div class="math-block">
+                    <span id="math-1"></span>
+                </div>
+                <p>Using the chain rule:</p>
+                <div class="math-block">
+                    <span id="math-2"></span>
+                </div>
+
+                <h4>n-gram Models &amp; Markov Assumption</h4>
+                <p>Assume:</p>
+                <div class="math-block">
+                    <span id="math-3"></span>
+                </div>
+                <p>Limitations:</p>
+                <ul>
+                    <li>Fixed context window</li>
+                    <li>Data sparsity</li>
+                    <li>Weak generalization</li>
+                </ul>
+
+                <hr>
+
+                <h2>5. Recurrent Neural Networks (RNNs)</h2>
+                <h3>Modeling Sequential Dependencies</h3>
+                <p>RNNs introduced hidden states to model sequences, but suffered from:</p>
+                <ul>
+                    <li>Vanishing/exploding gradients</li>
+                    <li>Limited parallelism</li>
+                </ul>
+
+                <h4>LSTM / GRU</h4>
+                <p>Gating mechanisms enabled:</p>
+                <ul>
+                    <li>Longer-range dependencies</li>
+                    <li>Sequence-to-sequence learning</li>
+                </ul>
+
+                <hr>
+
+                <h2>6. The Transformer Revolution</h2>
+                <h3>Attention as the Core Mechanism</h3>
+                <p>The Transformer architecture replaces recurrence and convolution with <strong>self-attention</strong>, allowing each token to directly attend to every other token in the sequence. This enables efficient modeling of long-range dependencies and full parallelization during training.</p>
+
+                <hr>
+
+                <h3>Self-Attention: Query, Key, and Value</h3>
+                <p>Each input token is projected into three vectors:</p>
+                <ul>
+                    <li><strong>Query (Q):</strong> what the token is searching for</li>
+                    <li><strong>Key (K):</strong> what the token represents</li>
+                    <li><strong>Value (V):</strong> the information the token carries</li>
+                </ul>
+                <div class="math-block">
+                    <span id="math-4"></span>
+                </div>
+
+                <hr>
+
+                <h3>Scaled Dot-Product Attention</h3>
+                <div class="math-block">
+                    <span id="math-5"></span>
+                </div>
+                <ul>
+                    <li>Dot products measure relevance</li>
+                    <li>Scaling stabilizes gradients</li>
+                    <li>Softmax yields attention weights</li>
+                </ul>
+                <p>Each token's output is a <strong>context-dependent weighted sum</strong> of value vectors.</p>
+
+                <hr>
+
+                <h3>Multi-Head Attention</h3>
+                <p>Instead of a single attention operation, Transformers use <strong>multi-head attention</strong>:</p>
+                <ul>
+                    <li>Each head attends to different subspaces</li>
+                    <li>Captures diverse linguistic relations</li>
+                    <li>Outputs are concatenated and projected</li>
+                </ul>
+
+                <hr>
+
+                <h3>Causal Masking (Autoregressive Models)</h3>
+                <p>Decoder-only models (e.g., GPT) apply <strong>causal masking</strong>:</p>
+                <ul>
+                    <li>Prevents attending to future tokens</li>
+                    <li>Enforces left-to-right generation</li>
+                    <li>Preserves autoregressive training</li>
+                </ul>
+
+                <hr>
+
+                <h3>Positional Encoding</h3>
+                <p>Self-attention is permutation-invariant, so positional information must be injected.</p>
+
+                <h4>Absolute Positional Embeddings</h4>
+                <ul>
+                    <li>Fixed or learned vectors added to token embeddings</li>
+                </ul>
+
+                <h4>Relative Positional Encoding</h4>
+                <ul>
+                    <li>Models relative token distances</li>
+                    <li>Improves length generalization</li>
+                </ul>
+
+                <h4>Rotary Positional Embeddings (RoPE)</h4>
+                <p>RoPE applies position-dependent rotations to <strong>Q and K</strong> vectors:</p>
+                <ul>
+                    <li>Encodes relative position in dot products</li>
+                    <li>Parameter-efficient</li>
+                    <li>Enables strong long-context extrapolation</li>
+                </ul>
+
+                <hr>
+
+                <h2>Advanced Attention Mechanisms</h2>
+                <h3>Scaling Attention for Large Models</h3>
+                <p>As models and context lengths grow, vanilla attention becomes a computational and memory bottleneck. Several advanced techniques address this.</p>
+
+                <hr>
+
+                <h3>KV Cache (Inference Optimization)</h3>
+                <p>During autoregressive decoding:</p>
+                <ul>
+                    <li>Keys and values from previous tokens are cached</li>
+                    <li>Only queries are recomputed for new tokens</li>
+                    <li>Reduces per-token complexity from O(T²) to O(T)</li>
+                </ul>
+                <p>KV caching is essential for fast LLM inference.</p>
+
+                <hr>
+
+                <h3>Multi-Query Attention (MQA)</h3>
+                <p>MQA shares <strong>one set of keys and values across all attention heads</strong>:</p>
+                <ul>
+                    <li>Reduces memory footprint</li>
+                    <li>Accelerates inference</li>
+                    <li>Slightly reduces expressiveness</li>
+                </ul>
+                <p>Used in early large-scale systems to improve efficiency.</p>
+
+                <hr>
+
+                <h3>Grouped-Query Attention (GQA)</h3>
+                <p>GQA is a compromise between full multi-head attention and MQA:</p>
+                <ul>
+                    <li>Multiple query heads share a smaller number of KV heads</li>
+                    <li>Balances efficiency and expressiveness</li>
+                    <li>Widely adopted in modern LLMs</li>
+                </ul>
+                <p>GQA significantly reduces KV cache size while maintaining performance.</p>
+
+                <hr>
+
+                <h3>FlashAttention</h3>
+                <p>FlashAttention is a <strong>memory-efficient attention algorithm</strong>:</p>
+                <ul>
+                    <li>Computes attention in tiled blocks</li>
+                    <li>Avoids materializing the full attention matrix</li>
+                    <li>Optimized for GPU SRAM (on-chip memory)</li>
+                </ul>
+                <p>Benefits:</p>
+                <ul>
+                    <li>Lower memory usage</li>
+                    <li>Faster training and inference</li>
+                    <li>Enables longer context lengths</li>
+                </ul>
+                <p>FlashAttention is now standard in high-performance Transformer implementations.</p>
+
+                <hr>
+
+                <h3>Why Attention Scales</h3>
+                <p>These innovations allow attention to:</p>
+                <ul>
+                    <li>Scale to longer sequences</li>
+                    <li>Reduce memory and latency bottlenecks</li>
+                    <li>Support trillion-parameter and long-context models</li>
+                </ul>
+                <p>Attention is therefore not just a modeling choice, but a <strong>systems-level optimization frontier</strong>.</p>
+
+                <hr>
+
+                <h3>Key Takeaway</h3>
+                <blockquote>
+                    <p>Modern LLMs rely on self-attention as both a representational mechanism and a carefully engineered system, combining architectural design (Q/K/V, RoPE) with efficiency techniques (GQA, FlashAttention, KV caching).</p>
+                </blockquote>
+
+                <hr>
+
+                <h2>7. Transformer-Based Model Families</h2>
+
+                <h3>Decoder-Only (Autoregressive)</h3>
+                <p><strong>GPT</strong></p>
+                <ul>
+                    <li>Next-token prediction</li>
+                    <li>Strong generative capabilities</li>
+                </ul>
+
+                <h3>Encoder-Only</h3>
+                <p><strong>BERT</strong></p>
+                <ul>
+                    <li>Bidirectional context</li>
+                    <li>Masked language modeling</li>
+                </ul>
+
+                <h3>Encoder–Decoder</h3>
+                <p><strong>T5</strong></p>
+                <ul>
+                    <li>Unified text-to-text framework</li>
+                    <li>Strong for structured generation</li>
+                </ul>
+
+                <hr>
+
+                <h2>8. Scaling Laws and Mixture of Experts (MoE)</h2>
+
+                <h3>Scaling Laws</h3>
+                <p>Performance improves predictably with:</p>
+                <ul>
+                    <li>Model parameters</li>
+                    <li>Training data</li>
+                    <li>Compute</li>
+                </ul>
+                <p>This led to extremely large models with emergent abilities.</p>
+
+                <h3>Mixture of Experts (MoE)</h3>
+                <p>To scale efficiently, <strong>MoE architectures</strong> activate only a subset of parameters per token:</p>
+                <ul>
+                    <li>Sparse expert routing</li>
+                    <li>Conditional computation</li>
+                    <li>Higher capacity with lower compute cost</li>
+                </ul>
+                <p>Key ideas:</p>
+                <ul>
+                    <li>Gating network selects experts</li>
+                    <li>Only a few experts run per token</li>
+                    <li>Enables trillion-parameter models</li>
+                </ul>
+                <p>Examples: Switch Transformer, GLaM, Mixtral</p>
+                <p>MoE primarily addresses <strong>training and inference efficiency</strong>, not alignment.</p>
+
+                <hr>
+
+                <h2>9. Prompt Engineering</h2>
+                <h3>Inference-Time Control</h3>
+                <p>Large pretrained models can be steered without updating weights:</p>
+                <ul>
+                    <li>Instruction prompting</li>
+                    <li>Few-shot / zero-shot prompting</li>
+                    <li>Chain-of-thought prompting</li>
+                    <li>Role and system prompts</li>
+                </ul>
+                <p>Prompt engineering shifts control from <strong>training-time</strong> to <strong>inference-time</strong>.</p>
+
+                <hr>
+
+                <h2>10. Fine-Tuning Strategies</h2>
+
+                <h3>Standard Fine-Tuning (Supervised Fine-Tuning, SFT)</h3>
+                <ul>
+                    <li>Uses task- or domain-specific data</li>
+                    <li>Trains the model with the standard language modeling objective</li>
+                    <li>Answer tokens are masked during training</li>
+                    <li>No explicit instruction–response structure</li>
+                    <li>Adapts models to specific domains or tasks</li>
+                </ul>
+
+                <h3>Instructional Fine-Tuning (Instruction Tuning)</h3>
+                <ul>
+                    <li>Uses datasets formatted as instruction–response pairs</li>
+                    <li>Teaches models to follow human-written instructions</li>
+                    <li>Still optimizes next-token prediction</li>
+                    <li>Changes the training data distribution, not the loss function</li>
+                    <li>Enables general-purpose, instruction-following behavior</li>
+                </ul>
+
+                <hr>
+
+                <h2>11. Parameter-Efficient Fine-Tuning (PEFT)</h2>
+                <p>Note that PEFT is not grouped with standard and instructional fine-tuning because PEFT describes <em>how many</em> parameters are updated, while the other two determine <em>what data and objective</em> are used.</p>
+
+                <h3>LoRA and Related Methods</h3>
+                <p>To reduce cost, <strong>PEFT</strong> methods update only a small number of parameters.</p>
+
+                <h4>LoRA (Low-Rank Adaptation)</h4>
+                <p>LoRA:</p>
+                <ul>
+                    <li>Freezes base model weights</li>
+                    <li>Injects low-rank matrices into attention layers</li>
+                    <li>Trains only these low-rank updates</li>
+                </ul>
+                <p>Benefits:</p>
+                <ul>
+                    <li>Orders of magnitude fewer trainable parameters</li>
+                    <li>Fast training</li>
+                    <li>Easy deployment and model merging</li>
+                </ul>
+                <p>Other PEFT methods: Adapters, Prefix tuning, Prompt tuning</p>
+                <p>LoRA is now the <strong>dominant fine-tuning method</strong> for open-source LLMs.</p>
+
+                <hr>
+
+                <h2>12. Reinforcement Learning from Human Feedback (RLHF)</h2>
+                <p>RLHF aligns model behavior with human preferences:</p>
+                <ol>
+                    <li>Supervised fine-tuning (SFT)</li>
+                    <li>Reward model training</li>
+                    <li>Policy optimization (e.g., PPO)</li>
+                </ol>
+                <p>Optimizes for:</p>
+                <ul>
+                    <li>Helpfulness</li>
+                    <li>Safety</li>
+                    <li>Human intent</li>
+                </ul>
+
+                <hr>
+
+                <h2>13. Alignment and Safety</h2>
+                <p>Modern LLM development emphasizes alignment:</p>
+                <ul>
+                    <li>Reducing hallucinations</li>
+                    <li>Preventing harmful outputs</li>
+                    <li>Improving controllability</li>
+                </ul>
+                <p>Techniques include:</p>
+                <ul>
+                    <li>RLHF</li>
+                    <li>Constitutional AI</li>
+                    <li>Automated evaluators</li>
+                    <li>Red-teaming and monitoring</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            M.Sidenav.init(document.querySelectorAll('.sidenav'));
+
+            const maths = {
+                'math-1': 'P(w_1, w_2, \\ldots, w_T)',
+                'math-2': 'P(w_t \\mid w_1, \\ldots, w_{t-1})',
+                'math-3': 'P(w_t \\mid w_{t-n+1}, \\ldots, w_{t-1})',
+                'math-4': 'Q = XW_Q,\\quad K = XW_K,\\quad V = XW_V',
+                'math-5': '\\text{Attention}(Q, K, V) = \\text{softmax}\\!\\left(\\frac{QK^\\top}{\\sqrt{d_k}}\\right)V'
+            };
+
+            Object.entries(maths).forEach(function([id, tex]) {
+                const el = document.getElementById(id);
+                if (el) katex.render(tex, el, { displayMode: true, throwOnError: false });
+            });
+        });
+    </script>
+</body>
+</html>
